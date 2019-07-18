@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
     {value: 'pizza-1', viewValue: 'Pizza'},
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
+  favoriteSeason: string;
+  seasons: string[] = ['Engineering', 'Design', 'Sales'];
 
   constructor(private _formBuilder: FormBuilder) {
   }

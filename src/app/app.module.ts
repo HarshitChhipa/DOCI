@@ -50,6 +50,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PortalModule } from '@angular/cdk/portal';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 
 const materialModules = [
   A11yModule,
@@ -99,7 +101,9 @@ const materialModules = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
