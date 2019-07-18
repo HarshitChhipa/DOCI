@@ -53,6 +53,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
 
+/**
+ * Modules From Angular Material.
+ */
 const materialModules = [
   A11yModule,
   CdkStepperModule,

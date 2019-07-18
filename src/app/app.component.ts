@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Food } from './models/food.model';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaskOwnersModel } from './models/taskOwners.model';
+import { SkillsModel } from './models/skills.model';
 
 @Component({
   selector: 'app-root',
@@ -11,24 +12,76 @@ export class AppComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  panelOpenState = false;
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  favoriteSeason: string;
-  seasons: string[] = ['Engineering', 'Design', 'Sales'];
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  items: FormArray;
 
-  constructor(private _formBuilder: FormBuilder) {
+  panelOpenState = false;
+  taskOwnersModels: TaskOwnersModel[] = [
+    {ownerType: 'Single', ownerName: 'Single'},
+    {ownerType: 'multiple', ownerName: 'Multiple'},
+  ];
+
+  skillset: SkillsModel[] = [
+    {id: 1, skill: 'Engineering Skill'},
+    {id: 2, skill: 'Non Tech Skills'}
+  ];
+  favoriteIndustry: string;
+  industries: string[] = ['Engineering', 'Design', 'Sales'];
+
+  constructor(private formBuilder: FormBuilder) {
   }
 
+  /**
+   * Initialization of our forms will be done on ngOnInit lifecycle
+   */
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.firstFormGroup = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      // owner: ['', Validators.required],
+      ownerName: ['', Validators.required],
     });
-    this.secondFormGroup = this._formBuilder.group({
+
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
   }
+
+  /**
+   *Submitting the first Form
+   */
+  submitDOForm() {
+    if (!!this.firstFormGroup.valid) {
+      alert(JSON.stringify(this.firstFormGroup.value));
+    }
+  }
+
+  /**
+   * TODO: Add multiple ownerName when click on Add People
+   * This functionality is ongoing.
+   */
+  addOwners() {
+    console.log('You have Clicked on AddOwners');
+    // this.items = this.firstFormGroup.get('ownerName') as FormArray;
+    // this.items.push(this.createOwners());
+  }
+
+  createOwners() {
+    return this.formBuilder.group({ownerName: ''});
+  }
+
+  // quesControl() {
+  //   if (!!this.firstFormGroup.get('ownerName') && this.firstFormGroup.get('ownerName.ownerName')) {
+  //     return (<FormArray> this.firstFormGroup.get('ownerName.ownerName')).controls;
+  //   }
+  // }
 }
